@@ -14,7 +14,8 @@ del get_versions
 
 _DIRECTORIES = [
     'agents', 'checkman', 'checks', 'doc', 'inventory', 'notifications',
-    'pnp-templates', 'web', 'lib', 'agent_based', 'cmk_addons_plugins'
+    'pnp-templates', 'web', 'lib', 'agent_based', 'cmk_addons_plugins',
+    'cmk_plugins', 'ec_rule_packs', 'gui','locales', 'bin', 'mibs', 'alert_handlers' 
 ]
 
 _VERSION_PACKAGED = 'python-mkp'
