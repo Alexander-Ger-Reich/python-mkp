@@ -37,6 +37,7 @@ Create a directory structure as follows:
     ├── agent_based/
     ├── checkman/
     ├── checks/
+    ├── cmk_addons_plugins/
     ├── doc/
     ├── inventory/
     ├── lib/
