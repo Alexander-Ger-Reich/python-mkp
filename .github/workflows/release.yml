@@ -1,31 +1,31 @@
-name: release
+name: Python Package
 
 on:
   push:
-    tags:
-      - "[0-9]+.[0-9]+"
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pipenv
-          pipenv install --dev --deploy
-      - name: Build and publish
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        run: |
-          pipenv run pytest
-          pipenv run python setup.py bdist_wheel
-          pipenv run twine upload dist/*
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install git+https://github.com/Alexander-Ger-Reich/python-mkp.git
+
+    - name: Run Tests
+      run: |
+        pytest
