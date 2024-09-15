@@ -9,6 +9,8 @@ Pack or unpack [Check_MK](https://mathias-kettner.de/check_mk.html) mkp files.
 The purpose of this library is to generate mkp files from source without having to set up a complete Check\_MK instance. It is not intended for installing mkp files to a Check\_MK site.
 ## Installation
 
+### Download this repo
+
     pip install python-mkp-master.zip
     
 
