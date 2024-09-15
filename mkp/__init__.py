@@ -12,16 +12,14 @@ from ._version import get_versions
 __version__ = get_versions()['version']
 del get_versions
 
-_DIRECTORIES = [
-    'agents', 'checkman', 'checks', 'doc', 'inventory', 'notifications',
-    'pnp-templates', 'web', 'lib', 'agent_based', 'cmk_addons_plugins',
-    'cmk_plugins', 'ec_rule_packs', 'gui','locales', 'bin', 'mibs', 'alert_handlers' 
-]
-
 _VERSION_PACKAGED = 'python-mkp'
 
 _DIST_DIR = 'dist'
 
+
+def get_folders(path):
+    # Liste alle Ordner im angegebenen Verzeichnis auf (ohne Unterordner)
+    return [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))]
 
 def dist(info, path=None, blacklist=[]):
     if not path:
@@ -51,7 +49,8 @@ def load_bytes(data):
 
 def find_files(path, blacklist=[]):
     result = {}
-    for directory in _DIRECTORIES:
+    ordner = get_folders(path)
+    for directory in ordner:
         result[directory] = _find_files_in_directory(os.path.join(path, directory), blacklist)
 
     return result
@@ -88,7 +87,8 @@ def pack_to_bytes(info, path):
         _add_to_archive(archive, 'info', encode_info(info))
         _add_to_archive(archive, 'info.json', encode_info_json(info))
 
-        for directory in _DIRECTORIES:
+        ordner = get_folders(path)
+        for directory in ordner:
             files = info['files'].get(directory, [])
             if not files:
                 continue
@@ -163,7 +163,10 @@ class Package(object):
         return self._json_info
 
     def extract_files(self, path):
-        for directory in _DIRECTORIES:
+        # Convert the data to a JSON formatted string with 4 spaces of indentation
+        directories = self.info['files'].keys()
+
+        for directory in directories:
             self._extract_files_in_directory(path, directory)
 
     def _extract_files_in_directory(self, path, directory):
