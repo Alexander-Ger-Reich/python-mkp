@@ -71,7 +71,7 @@ def _find_files_in_directory(path, blacklist):
             relpath = os.path.relpath(abspath, start=path)
             if any(re.search(pattern, abspath) for pattern in blacklist):
                 continue
-            result.append(relpath)
+            result.append(relpath.replace("\\", "/"))
     return result
 
 
