@@ -34,27 +34,8 @@ Create a executable script in the the top directory, e.g. `dist.py`
         'version.min_required': '1.2.3',
     })
     
-Create a directory structure as follows:
+Create a directory if necessary:
 
-    ├── agents/
-    ├── agent_based/
-    ├── alert_handlers/
-    ├── bin/
-    ├── checkman/
-    ├── checks/
-    ├── cmk_plugins/
-    ├── cmk_addons_plugins/
-    ├── doc/
-    ├── ec_rule_packs/
-    ├── gui/
-    ├── inventory/
-    ├── lib/
-    ├── locales/
-    ├── notifications/
-    ├── pnp-templates/
-    ├── web/
-    ├── mibs/
-    └── dist.py
 
 Empty directories can be omitted. Running `dist.py` will pack all files in the
 directories listed above to a mkp package with the canonical name and the
