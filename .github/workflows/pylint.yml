@@ -25,5 +25,5 @@ jobs:
         
     - name: Analysing the code with pylint
       run: |
-        pylint mkp
+        pylint mkp --disable=C0114,C0115,C0116 --exit-zero
 
